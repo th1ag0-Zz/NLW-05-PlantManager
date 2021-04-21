@@ -2,17 +2,27 @@ import React from 'react';
 import {
   Image,
   Text,
-  TouchableOpacity,
   StyleSheet,
   StatusBar,
-  View } from 'react-native';
+  View,
+  TouchableOpacity,
+  Dimensions
+} from 'react-native';
+import { useNavigation } from '@react-navigation/core';
+
+import { Feather } from '@expo/vector-icons'
 
 import colors from '../styles/colors'
 import watering from '../assets/watering.png'
+import fonts from '../styles/fonts';
 
-export function Welcome() {
+function Welcome() {
 
-  const icon = '>'
+  const { navigate } = useNavigation()
+
+  function handleStart() {
+    navigate('UserIdentification')
+  }
 
   return (
     <View style={styles.container}>
@@ -20,7 +30,11 @@ export function Welcome() {
         Gerencie{'\n'}suas plantas de{'\n'}forma fácil
       </Text>
 
-      <Image source={watering} style={styles.image} />
+      <Image
+        source={watering}
+        style={styles.image}
+        resizeMode='contain'
+      />
 
       <Text style={styles.subtitle}>
         Não esqueça mais de regar suas plantas.
@@ -30,8 +44,12 @@ export function Welcome() {
       <TouchableOpacity
         activeOpacity={0.8}
         style={styles.button}
+        onPress={handleStart}
       >
-        <Text style={styles.buttonText}> {icon} </Text>
+        <Feather
+          name="chevron-right"
+          style={styles.buttonIcon}
+        />
       </TouchableOpacity>
     </View>
   )
@@ -42,27 +60,30 @@ const styles = StyleSheet.create({
     paddingTop: StatusBar.currentHeight,
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
+    paddingHorizontal: 20
   },
   
   title: {
-    fontSize: 32,
+    fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
     color: colors.heading,
-    marginTop: 38
+    marginTop: 38,
+    fontFamily: fonts.heading,
+    lineHeight: 34,
   },
 
   subtitle: {
     textAlign: 'center',
     fontSize: 18,
     paddingHorizontal: 20,
-    color: colors.heading
+    color: colors.heading,
+    fontFamily: fonts.text
   },
 
   image: {
-    width: 292,
-    height: 284
+    height: Dimensions.get('window').width * 0.7
   },
 
   button: {
@@ -75,8 +96,10 @@ const styles = StyleSheet.create({
     width: 56
   },
 
-  buttonText: {
-    color: '#fff',
-    fontSize: 24
+  buttonIcon: {
+    fontSize: 32,
+    color: colors.white
   }
 })
+
+export default Welcome;
