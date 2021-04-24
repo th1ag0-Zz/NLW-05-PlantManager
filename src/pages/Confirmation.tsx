@@ -5,12 +5,19 @@ import {
   StyleSheet,
   StatusBar
 } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 
 import Button from '../components/Button';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
 function Confirmation() {
+  const { navigate } = useNavigation()
+
+  function handleSubmit() {
+    navigate('PlantSelect')
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -27,7 +34,10 @@ function Confirmation() {
         </Text>
 
         <View style={styles.footer}>
-          <Button title="Começar" />
+          <Button
+            title="Começar"
+            onPress={handleSubmit}
+          />
         </View>
       </View>
     </View>
