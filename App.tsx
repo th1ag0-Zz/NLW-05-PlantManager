@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import * as Notifications from 'expo-notifications';
 import AppLoading from 'expo-app-loading'
 import {
   useFonts,
@@ -13,6 +14,14 @@ export default function App() {
     Jost_400Regular,
     Jost_600SemiBold
   })
+
+  // useEffect(() => {
+  //   async function notifications() {
+  //     const data = await Notifications.getAllScheduledNotificationsAsync()
+  //     console.log(data)
+  //   }
+  //   notifications()
+  // }, [])
 
   if (!fontLoaded)
     return <AppLoading />

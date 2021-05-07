@@ -114,6 +114,7 @@ const PlantSelect: React.FC = () => {
   }, []);
 
   if (loading) return <Load />;
+  
   return (
     <View style={styles.container}>
       <View style={styles.header}>

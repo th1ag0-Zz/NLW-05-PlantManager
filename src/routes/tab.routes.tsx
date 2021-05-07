@@ -16,7 +16,7 @@ const AuthRoutes = () => {
         inactiveTintColor: colors.heading,
         labelPosition: 'beside-icon',
         style: {
-          height: 70,
+          height: 60,
         }
       }}
     >
